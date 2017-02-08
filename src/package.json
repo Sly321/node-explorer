@@ -1,0 +1,10 @@
+{
+  "name":"nw.js-example",
+  "version":"0.1.0",
+  "main":"views/main.html",
+  "window": {
+    "min_width": 400,
+    "min_height": 400,
+    "icon":"assets/icon_16x16.png"
+  }
+}
