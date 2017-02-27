@@ -16,6 +16,7 @@ html, body {
 
 .directory {
     background: green;
+	cursor: pointer;
 }
 
 #shell {

@@ -29,7 +29,10 @@ function executeShell() {
     var command = shell.value;
 	switch (command) {
 		case "init":
-			initFilebrowser();
+			initFilebrowser(homeDir);
+			break;
+		case "cd ..":
+			initFilebrowser(parentDir);
 			break;
 		default:
 
