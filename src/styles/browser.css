@@ -10,6 +10,10 @@ html, body {
     background: yellow;
 }
 
+.file > .fa, .directory > .fa {
+	float: left;
+}
+
 .directory {
     background: green;
 }

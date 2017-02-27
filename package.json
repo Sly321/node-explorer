@@ -3,17 +3,18 @@
   "version": "0.0.1",
   "description": "File Explorer Application with Nodejs",
   "scripts": {
-    "dev":"nw src/",
-    "prod":"nwbuild --platforms win32,win64,osx64,linux32,linux64 --buildDir dist/ src/"
+    "dev": "nw src/",
+    "prod": "nwbuild --platforms win32,win64,osx64,linux32,linux64 --buildDir dist/ src/"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
-    "nw":"^0.18.2",
-    "nw-builder":"^3.1.2"
+    "nw": "^0.18.2",
+    "nw-builder": "^3.1.2"
   },
   "repository": {}
 }

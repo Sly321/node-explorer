@@ -27,6 +27,13 @@ function browseHistoryDown() {
 
 function executeShell() {
     var command = shell.value;
+	switch (command) {
+		case "init":
+			initFilebrowser();
+			break;
+		default:
+
+	}
     commandHistory.push(command);
     shell.value = "";
 }
