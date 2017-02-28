@@ -19,9 +19,16 @@
 	"gulp": "^3.9.1",
 	"gulp-mocha": "^4.0.1",
 	"gulp-watch": "^4.3.11",
+	"gulp-typescript": "^3.1.5",
 	"mocha": "^3.2.0",
 	"run-sequence": "^1.2.2",
-	"sinon": "^2.0.0-pre.6"
+	"sinon": "^2.0.0-pre.6",
+	"@types/chai": "^3.4.35",
+	"@types/mocha": "^2.2.39",
+	"@types/node": "^7.0.5",
+	"@types/sinon-chai": "^2.7.27",
+	"gulp-minify": "0.0.15",
+	"typescript": "^2.1.6"
   },
   "repository": {}
 }
