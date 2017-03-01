@@ -4,6 +4,9 @@ let expect = chai.expect;
 
 let StringOperations = require("../src/app/string-operations");
 
+/**
+ * Testet die Funktion getCommandObjectFromString aus der Datei string-operatios.js
+ */
 describe('testStringOperations', () => {
 
 	let classUnderTest = StringOperations;
