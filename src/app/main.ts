@@ -1,29 +1,37 @@
 let os = require('os');
 let fs = require('fs');
+let fo = require('file-operations');
 
-//require('nw.gui').Window.get().showDevTools();
+let homeDir = os.userInfo().homedir;
+let username = os.userInfo().username;
 
-var homeDir = os.userInfo().homedir;
-var username = os.userInfo().username;
-
-var parentDir = null;
-var currentDir = homeDir;
+let parentDir = null;
+let currentDir = homeDir;
+let currentDirContent = [];
 
 let contentElement = document.getElementById("content");
 
 function getObjectInformation(path, file, callback) {
-    return fs.stat(`${path}\\${file}`, function (err, stats) {
-       if (err) {
-       		console.log("err");
-           return console.error(err);
-       }
-       callback(stats, path, file);
-    });
+	return fs.stat(`${path}\\${file}`, function(err, stats) {
+		if (err) {
+			console.log("err");
+			return console.error(err);
+		}
+		callback(stats, path, file);
+	});
+}
+
+function openDirectory(dirName) {
+	if (currentDirContent.indexOf(dirName) >= 0) {
+		initFilebrowser(`${currentDir}\\${dirName}`)
+	} else {
+		// Directory does not exist
+	}
 }
 
 function buildFileElement(el, path, name) {
 	el.classList.add("file");
-    el.innerHTML = name;
+	el.innerHTML = name;
 	var icon = document.createElement("i");
 	icon.classList.add("fa", "fa-file");
 	el.append(icon);
@@ -32,7 +40,7 @@ function buildFileElement(el, path, name) {
 
 function buildDirectoryElement(el, path, name) {
 	el.classList.add("directory");
-    el.innerHTML = name;
+	el.innerHTML = name;
 	el.onclick = () => {
 		initFilebrowser(`${path}\\${name}`);
 	}
@@ -44,28 +52,30 @@ function buildDirectoryElement(el, path, name) {
 
 var buildElement = (stats, path, name) => {
 	var el = document.createElement("div");
-    if (stats.isFile()) {
+	if (stats.isFile()) {
 		el = buildFileElement(el, path, name);
 	}
-    if (stats.isDirectory()) {
+	if (stats.isDirectory()) {
 		el = buildDirectoryElement(el, path, name);
 	}
-	contentElement.append(el);
+	contentElement.appendChild(el);
 };
 
 function initFilebrowser(directory) {
 	contentElement.innerHTML = "";
 	currentDir = directory;
-	fs.readdir(directory, function(err, files){
-	   if (err) {
-	      return console.error(err);
-	   }
-	   parentDir = getParentDirectory(directory);
+	fs.readdir(directory, function(err, files) {
+		if (err) {
+			return console.error(err);
+		}
 
-	   files.forEach( function (file){
-	       console.log(file);
-	       getObjectInformation(directory, file, buildElement);
-	   });
+		currentDirContent = [];
+		parentDir = fo.getParentDirectory(directory);
+
+		files.forEach(function(file) {
+			currentDirContent.push(file);
+			getObjectInformation(directory, file, buildElement);
+		});
 	});
 }
 
